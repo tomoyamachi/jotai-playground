@@ -13,9 +13,9 @@ export function DelayedComponent() {
 }
 
 const asyncAtom = atom(async (get) => {
-  get(countAtom)
+  const count = get(countAtom)
   await new Promise(resolve => setTimeout(resolve, 1000));
-  return "----Promise----";
+  return `----Promise : ${count}----`;
 });
 
 export function PromiseComponent() {

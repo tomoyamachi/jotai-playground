@@ -3,12 +3,14 @@ import { DelayedComponent } from "./components/Delay.tsx";
 import { Suspense } from "react";
 import { Counter } from "./components/Counter.tsx";
 import { StoreCounter } from "./components/StoreCounter.tsx";
+import { DevTools } from 'jotai-devtools'
+import 'jotai-devtools/styles.css'
 
 function App() {
 
   return (
     <>
-      <h1>Vite + React</h1>
+      <DevTools />
       <div>
         <Suspense fallback={<div>Loading...</div>}>
           <DelayedComponent/>
