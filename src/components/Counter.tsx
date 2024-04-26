@@ -1,6 +1,5 @@
-import { atom, useAtom } from "jotai/index";
-
-export const countAtom = atom(0);
+import { useAtom } from "jotai/index";
+import { countAtom } from "../atoms.ts";
 
 export const Counter = () => {
   const [count, setCount] = useAtom(countAtom);

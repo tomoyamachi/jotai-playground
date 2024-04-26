@@ -1,27 +1,24 @@
-import React from "react";
-import { countAtom } from "./Counter.tsx";
-import { useAtomValue } from "jotai/index";
+import { atom, useAtomValue } from "jotai/index";
+import { countAtom } from "../atoms.ts";
 
 
 
 export function DelayedComponent() {
   const val = useAtomValue(countAtom);
 
-  console.log("DelayedComponent", val);
   return <>
-    <div>{val}</div>
+    <div>Counter: {val}</div>
     <PromiseComponent/>
   </>;
 }
 
-export const PromiseComponent = React.lazy(() => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({
-        default: function DelayedComponent() {
-          return <div>This is a delayed component</div>;
-        }
-      });
-    }, 2000); // 2秒後に解決する
-  });
+const asyncAtom = atom(async (get) => {
+  get(countAtom)
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  return "----Promise----";
 });
+
+export function PromiseComponent() {
+  const val = useAtomValue(asyncAtom);
+  return <div>{val}</div>;
+}

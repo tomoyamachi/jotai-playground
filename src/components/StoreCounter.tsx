@@ -1,6 +1,6 @@
-import { atom, getDefaultStore, useAtomValue } from "jotai/index";
+import { getDefaultStore, useAtomValue } from "jotai/index";
+import { storeCountAtom } from "../atoms.ts";
 
-export const storeCountAtom = atom(0);
 export const StoreCounter = () => {
   const count = useAtomValue(storeCountAtom);
   const inc = () => {getDefaultStore().set(storeCountAtom, (c) => c + 1)};
